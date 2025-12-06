@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SupplierSync - AI Search Agent</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Dynamic Background -->
+    <div class="bg-container">
+        <div class="bg-gradient"></div>
+        <canvas id="particle-canvas" class="particle-canvas"></canvas>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="header-title">HAL 9000 Project Demo</h1>
+            <p class="header-subtitle">AI-Powered Industrial Supplier Search</p>
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+        </header>
+
+        <!-- Market Summary -->
+        <section class="market-summary">
+            <h2 class="summary-title">Market Overview</h2>
+            <div id="market-stats" class="stats-grid"></div>
+        </section>
+
+        <!-- Search Form -->
+        <form id="search-form" class="search-form">
+            <div class="form-group filters">
+                <select id="productFilter" name="product" class="form-select">
+                    <option value="">Select Product</option>
+                    {% for i in Sub_category %}
+                        <option value="{{ i }}">{{i}}</option>
+                    {% endfor %}
+                </select>
+                <select id="locationFilter" name="location" class="form-select">
+                    <option value="">All Location</option>
+                    {% for i in City %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+                <div class="price-filter">
+                    <input type="range" id="priceRange" name="max_price" min="0" max="6000" value="3000" step="100" class="price-slider">
+                    <span id="priceValue" class="price-value">₹3,000</span>
+                </div>
+            </div>
+            <button type="submit" class="search-btn">Search Suppliers</button>
+        </form>
+
+        <!-- Image Search Section -->
+        <section class="image-search-section">
+            <h2 class="image-search-title">Search by Image</h2>
+            <div class="image-upload-container">
+                <div class="image-preview-container">
+                    <img id="imagePreview" src="#" alt="Image preview" style="display: none;">
+                    <p id="imagePlaceholder" class="image-placeholder">No image selected</p>
+                </div>
+                <div class="upload-controls">
+                    <input type="file" id="imageUpload" accept="image/*" class="image-upload-input">
+                    <button type="button" id="uploadBtn" class="upload-btn">Upload Image</button>
+                    <button type="button" id="searchByImageBtn" class="search-image-btn" disabled>Search Suppliers</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results" class="results-section">
+            <h2 class="results-title">Supplier Results</h2>
+            <div class="sort-container">
+                <label for="sortSelect" class="form-label">Sort By:</label>
+                <select id="sortSelect" class="form-select">
+                    <option value="default">Default</option>
+                    <option value="price-high">Price (High to Low)</option>
+                    <option value="price-low">Price (Low to High)</option>
+                </select>
+            </div>
+            <p id="result-message" class="result-message">Start your supplier search...</p>
+            <div id="result-grid" class="result-grid"></div>
+            <div id="load-more-trigger" class="load-more-trigger"></div>
+        </section>
+
+        <!-- Documentation -->
+        <section class="docs">
+            <h2 class="docs-title">About SupplierSync</h2>
+            <p class="docs-text">
+                SupplierSync is an AI-powered agent that scrapes supplier data, classifies manufacturers by product and category, and helps you find the best suppliers. Filter by product, location, and price, then sort by preference. You can also search by uploading product images.
+            </p>
+        </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

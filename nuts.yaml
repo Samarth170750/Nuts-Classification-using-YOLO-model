@@ -1,0 +1,6 @@
+train: C:\Users\SAMARTH\Desktop\Night\dataset\images\train
+val: C:\Users\SAMARTH\Desktop\Night\dataset\images\validation
+test: C:\Users\SAMARTH\Desktop\Night\dataset\images\test
+
+nc: 6
+names: ['Castle Nut', 'Coupling Nut', 'Flange Nut', 'Square Nut', 'Well Nut', 'Wing Nut']
